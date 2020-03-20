@@ -1,7 +1,8 @@
 "use strict";
-import Utils from './utils.js';
+import Utils from './utils/utils.js';
 
 import Home from './views/pages/home.js';
+import Login from './views/pages/login.js';
 
 //import PostShow from './views/pages/postShow.js';
 import Register from './views/pages/register.js';
@@ -14,6 +15,7 @@ const routes = {
   '/'             : Home
 //  , '/p/:id'      : PostShow
   , '/register'   : Register
+  , '/login'   : Login
 };
 
 
@@ -29,7 +31,7 @@ const router = async () => {
   header.innerHTML = await Navbar.render();
   await Navbar.after_render();
  // footer.innerHTML = await Bottombar.render();
- // await Bottombar.after_render();
+  //await Bottombar.after_render();
 
 
   // Get the parsed URl from the addressbar

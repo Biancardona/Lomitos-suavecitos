@@ -1,6 +1,6 @@
 const Home = {
   render: async () => {
-    const posts = await getPostsList();
+ //   const posts = await getPostsList();
     const view = /* html */ `
             <section class="section">
                 <h1> Home </h1>

@@ -1,4 +1,4 @@
-import Utils from './utils.js'
+/*import Utils from './utils.js'
 
 let getPost = async (id) => {
     const options = {
@@ -23,7 +23,7 @@ let PostShow = {
         let request = Utils.parseRequestURL()
         let post = await getPost(request.id)
         
-        return /*html*/`
+        return /*html*/ /*`
             <section class="section">
                 <h1> Post Id : ${post.id}</h1>
                 <p> Post Title : ${post.title} </p>

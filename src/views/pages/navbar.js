@@ -1,29 +1,29 @@
 let Navbar = {
     render: async () => {
         let view = /*html*/ `
+            
+             <h1 class="logo">LOMITOTECA <a href="/#/"</a>
+             </h1>
              <nav class="navbar" role="navigation" aria-label="main navigation">
-              <a class="navbar-item" href="/#/">
-               <img class="image" src="Angry.jpg">
-                </a>
+             <ul class="main-nav" id="js-menu">
                   <li>
-                     <a class="navbar-item" href="/#/"> Home </a>
-                  </li>
-                  <li>
-                     <a class="navbar-item" href="/#/about"> About </a>
-                  </li>
-                  <li>
+                     <a class="navbar-item" <a href="/#/"> Home </a></li>
+                     <li>
+                  <a class="navbar-item" <a  href="/#/about"> About </a></li>
                <div class="buttons">
-                <a class="button is-primary" href="/#/register"> 
+                <a class="navbar-item" href="/#/register"> 
                   <strong>Sign up</strong>
                     </a>
-             <a class="button is-light" href="/#/login">
+                    <div class="buttons">
+             <a class="navbar-item" href="/#/login">
              <strong>Log in</strong>
              </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             <div class="burger">
+              <i class="fas fa-bars"></i>
+              </div>
+                 </div>
+                 </div>
+                 </ul>
             </nav>
         `
         return view
