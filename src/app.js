@@ -7,19 +7,23 @@ import Login from './views/pages/login.js';
 //import PostShow from './views/pages/postShow.js';
 import Register from './views/pages/register.js';
 
-import Navbar from './views/pages/navbar.js';
+import Navbar from './views/components/navbar.js';
+
+
 //import Bottombar from './views/components/Bottombar.js';
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
   '/'             : Home
-//  , '/p/:id'      : PostShow
+  //, '/p/:id'      : PostShow
   , '/register'   : Register
   , '/login'   : Login
+
 };
 
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
+
 const router = async () => {
 
   // Lazy load view element:

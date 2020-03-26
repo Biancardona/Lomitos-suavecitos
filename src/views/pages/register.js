@@ -1,6 +1,4 @@
-import {
-    createUser,
-  } from '../../controller/controller.js';
+import Credvalidator from '../../../controller/controller.js';
 
 let Register = {
 
@@ -57,7 +55,17 @@ let Register = {
                 alert (`The fields cannot be empty`)
             } 
             else {
-                createUser(email.value, pass.value);
+                Credvalidator.createUser(email.value, pass.value)
+                .then(() => {
+                    window.location.hash = 'home'
+                })
+                .catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+                })
                 alert(`User with email ${email.value} was successfully submitted!`)
             }    
         })

@@ -7,7 +7,7 @@ let Navbar = {
              <nav class="navbar" role="navigation" aria-label="main navigation">
              <ul class="main-nav" id="js-menu">
                   <li>
-                     <a class="navbar-item" <a href="/#/"> Home </a></li>
+                     <a class="navbar-item" <a href="/#/home"> Home </a></li>
                      <li>
                   <a class="navbar-item" <a  href="/#/about"> About </a></li>
                <div class="buttons">
