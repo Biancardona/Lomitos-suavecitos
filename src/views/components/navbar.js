@@ -14,14 +14,6 @@ let Navbar = {
                 <a class="navbar-item" href="/#/register"> 
                   <strong>Sign up</strong>
                     </a>
-                    <div class="buttons">
-             <a class="navbar-item" href="/#/login">
-             <strong>Log in</strong>
-             </a>
-             <div class="burger">
-              <i class="fas fa-bars"></i>
-              </div>
-                 </div>
                  </div>
                  </ul>
             </nav>

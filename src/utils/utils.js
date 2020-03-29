@@ -4,7 +4,7 @@ const Utils = {
     // --------------------------------
     parseRequestURL : () => {
 
-        let url = location.hash.slice(1).toLowerCase() || '/';
+        let url = location.hash.slice(1).toLowerCase() || '/login';
         let r = url.split("/")
         let request = {
             resource    : null,
