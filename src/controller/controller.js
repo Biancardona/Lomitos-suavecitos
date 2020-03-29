@@ -15,16 +15,14 @@ let Credvalidator = {
     },
     addPost: (postUser) => {
         const db = firebase.firestore();
-        db.collection('post').add({
-                descripcion: postUser,
-            })
-            .then((docRef) => {
-                console.log('Document written with ID: ', docRef.id);
-                console.log('Save' + postToSave + 'to Firestore');
-            })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
-            });
+        return db.collection('post').add({
+            descripcion: postUser,
+        })
+    },
+    getPost: () => {
+        const docRef = db.collection('post');
+       return docRef.get({
+        })
     }
 
 }

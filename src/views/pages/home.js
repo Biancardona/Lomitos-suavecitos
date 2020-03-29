@@ -5,7 +5,7 @@ let Home = {
      <section class="section">
      <div class="field">
          <p class="control has-icons-left has-icons-right">
-             <button class="buttons" type="submit" id="btnClosed"><a href="#/home">Sign Out</a></button></br>
+             <button class="buttons" type="submit" id="btnClosed"><a href="#/login">Sign Out</a></button></br>
              <span class="icon is-small is-left">
                  <i class="fas fa-envelope"></i>
              </span>
@@ -16,12 +16,11 @@ let Home = {
      </div>
          <section class="section">
 
-             <h1> Welcome </h1>
-             <h2 id="userName"></h2>
+             <h1 id="userName"></h1> 
              <h3 class="text-user"></h3>
              <form id="form-addPost" method ="post" name="fileinfo">
       <input name="post" type="text" id="add_post" placeholder="¿What´s on your mind?"></br>
-      <button type="submit" id="add_post_btn"><a href="#/home">Create Post</button></br>
+      <button type="submit" id="create_post_btn"><a href="#/">Create Post</button></br>
       
       <div>
       <button> Galery </button>
@@ -37,8 +36,8 @@ let Home = {
     },
     after_render: async () => {
         const user = firebase.auth().currentUser;
-        document.getElementById("userName").innerHTML= user.displayName;
-        document.getElementById("add_post_btn").addEventListener("click", () => {
+        document.getElementById("userName").innerHTML= 'Welcome ' + user.displayName;
+        document.getElementById("create_post_btn").addEventListener("click", () => {
             let post = document.getElementById("add_post");
             if (post.value == '') {
                 alert(`The field cannot be empty`)
@@ -47,16 +46,15 @@ let Home = {
                 // alert('Please enter an email');
             } else {
                 Credvalidator.addPost(post.value)
-                    .then(() => {
+                    .then((docRef) => {
+                        console.log('Document written with ID: ', docRef.id);
                         window.location.hash = '/';
                     })
                     .catch(function (error) {
+                        console.log(error.code);
+                        console.log(error.message);
                         window.location.hash = '/';
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log(errorCode);
-                        console.log(errorMessage);
-                    })
+                    }) 
             }
         })
     }
