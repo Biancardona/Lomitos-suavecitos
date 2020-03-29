@@ -1,7 +1,7 @@
-//import Credvalidator from '../../controller/controller.js';
+import Credvalidator from '../../controller/controller.js';
 let Home = {
- render : async () => {
-    return /*html*/ `
+    render: async () => {
+        return /*html*/ `
      <section class="section">
      <div class="field">
          <p class="control has-icons-left has-icons-right">
@@ -17,6 +17,7 @@ let Home = {
          <section class="section">
 
              <h1> Welcome </h1>
+             <h2 id="userName"></h2>
              <h3 class="text-user"></h3>
              <form id="form-addPost" method ="post" name="fileinfo">
       <input name="post" type="text" id="add_post" placeholder="¿What´s on your mind?"></br>
@@ -33,27 +34,24 @@ let Home = {
          </section>
      `
 
- }
- ,   after_render: async () => {
-   document.getElementById("add_post_btn").addEventListener("click", () => {
+    },
+    after_render: async () => {
+        const user = firebase.auth().currentUser;
+        document.getElementById("userName").innerHTML= user.displayName;
+        document.getElementById("add_post_btn").addEventListener("click", () => {
             let post = document.getElementById("add_post");
             if (post.value == '') {
                 alert(`The field cannot be empty`)
-          //  } else if (Utils.validateEmail === false) {
-               // window.location.hash = 'home';
-               // alert('Please enter an email');
+                //  } else if (Utils.validateEmail === false) {
+                // window.location.hash = 'home';
+                // alert('Please enter an email');
             } else {
-                Credvalidator.signInUser(email.value, pass.value)
-                .then(() => {
-                    const postToSave = add_post.value
-                    db.collection('post').add({
-                        description: postUser,
+                Credvalidator.addPost(post.value)
+                    .then(() => {
                         window.location.hash = '/';
                     })
-                    console.log('Save' + postToSave + 'to Firestore');
-                })
                     .catch(function (error) {
-                        window.location.hash = '/login';
+                        window.location.hash = '/';
                         var errorCode = error.code;
                         var errorMessage = error.message;
                         console.log(errorCode);

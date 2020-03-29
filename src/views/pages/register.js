@@ -3,7 +3,7 @@ import Credvalidator from '../../../controller/controller.js';
 let Register = {
 
     render: async () => {
-        return /*html*/ `
+            return /*html*/ `
             <section class="section">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
@@ -52,42 +52,44 @@ let Register = {
                 </div>
             </section>
         `
-    }
-    // All the code related to DOM interactions and controls go in here.
-    // This is a separate call as these can be registered only after the DOM has been painted
-    , after_render: async () => {
-        document.getElementById("register_submit_btn").addEventListener ("click",  () => {
-            let name        = document.getElementById("name_input");
-            let email       = document.getElementById("email_input");
-            let pass        = document.getElementById("pass_input");
-            let repeatPass  = document.getElementById("repeat_pass_input");
+        }
+        // All the code related to DOM interactions and controls go in here.
+        // This is a separate call as these can be registered only after the DOM has been painted
+        ,
+    after_render: async () => {
+        document.getElementById("register_submit_btn").addEventListener("click", () => {
+            let name = document.getElementById("name_input");
+            let email = document.getElementById("email_input");
+            let pass = document.getElementById("pass_input");
+            let repeatPass = document.getElementById("repeat_pass_input");
             if (pass.value != repeatPass.value) {
-                alert (`The passwords dont match`)
-            } else if (name.value ==''| email.value =='' | pass.value == '' | repeatPass == '') {
-                alert (`The fields cannot be empty`)
-            } 
-            else {
+                alert(`The passwords dont match`)
+            } else if (name.value == '' | email.value == '' | pass.value == '' | repeatPass == '') {
+                alert(`The fields cannot be empty`)
+            } else {
                 Credvalidator.createUser(email.value, pass.value)
-                .then(() => {
-                    const user = firebase.auth().currentUser;
-                    user.updateProfile({
-                        displayName: name.value
-                      });
-                    console.log(user);
-               })
                     .then(() => {
-                         window.location.hash = 'home'
+                        const user = firebase.auth().currentUser;
+                        user.updateProfile({
+                                displayName: name.value
+                            })
+                            .then(() => {
+                                window.location.hash = 'home'
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
                     })
-                .catch(function (error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(errorCode);
-                    console.log(errorMessage);
-                    window.location.hash = '/register'
-                    alert(errorCode + errorMessage)
-                })
-            }    
+                    .catch(function (error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                        window.location.hash = '/register'
+                        alert(errorCode + errorMessage)
+                    })
+            }
         })
     }
 }
