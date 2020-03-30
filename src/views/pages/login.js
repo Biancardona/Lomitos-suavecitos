@@ -1,4 +1,4 @@
-import Credvalidator from '../../controller/controller.js';
+import Controller from '../../controller/controller.js';
 import Utils from '../../utils/utils.js';
 let Login = {
 
@@ -48,7 +48,7 @@ let Login = {
                         window.location.hash = '/login';
                         alert('Please enter the password');
                     } else {
-                        Credvalidator.signInUser(email.value, pass.value)
+                        Controller.signInUser(email.value, pass.value)
                             .then(() => {
                                 window.location.hash = '/'
                             })

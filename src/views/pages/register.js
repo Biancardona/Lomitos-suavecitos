@@ -1,4 +1,4 @@
-import Credvalidator from '../../../controller/controller.js';
+import Controller from '../../../controller/controller.js';
 
 let Register = {
 
@@ -67,7 +67,7 @@ let Register = {
             } else if (name.value == '' | email.value == '' | pass.value == '' | repeatPass == '') {
                 alert(`The fields cannot be empty`)
             } else {
-                Credvalidator.createUser(email.value, pass.value)
+                Controller.createUser(email.value, pass.value)
                     .then(() => {
                         const user = firebase.auth().currentUser;
                         user.updateProfile({

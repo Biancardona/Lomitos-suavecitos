@@ -1,6 +1,6 @@
 import Utils from '../../utils/utils.js';
 
-let Credvalidator = {
+let Controller = {
 
     createUser: (email, password) => {
         if (Utils.validateEmail(email) === true) {
@@ -21,7 +21,15 @@ let Credvalidator = {
     getPost: (uid) => {
         const db = firebase.firestore();
        return db.collection(uid).get();
+  /*  },
+    addElement: ()=> {
+        const list = document.createElement('ul');
+        const item = document.createElement('li');
+       return list.appendChild(item);
+       
+
+    */
     }
 }
 
-export default Credvalidator;
+export default Controller;

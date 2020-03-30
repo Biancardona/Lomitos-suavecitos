@@ -1,17 +1,14 @@
-import Credvalidator from '../../controller/controller.js';
+import Controller from '../../controller/controller.js';
 let Home = {
     render: async () => {
         return /*html*/ `
      <section class="section">
      <div class="field">
          <p class="control has-icons-left has-icons-right">
-             <button class="buttons" type="submit" id="btnClosed"><a href="#/login">Sign Out</a></button></br>
-             <span class="icon is-small is-left">
-                 <i class="fas fa-envelope"></i>
-             </span>
-             <span class="icon is-small is-right">
-                 <i class="fas fa-check"></i>
-             </span>
+         <button class="buttons" type="submit" id="btnClosed"><a href="#/login">Sign Out</a></button></br>
+         <span class="icon is-small is-left">
+         <i class="fas fa-sign-out-alt"></i>
+         </span>
          </p>
      </div>
          <section class="section">
@@ -25,7 +22,7 @@ let Home = {
       <button> Galery </button>
       </div></br>
       <div id="published">
-    <p> </p>
+
       </div>
       
    </form>
@@ -35,13 +32,15 @@ let Home = {
     },
     after_render: async () => {
         const user = firebase.auth().currentUser;
-        Credvalidator.getPost(user.uid)
+        Controller.getPost(user.uid)
         .then((querySnapshot) => {
-            document.getElementById("published").value = "";
+            const list = document.createElement('ul');
+            document.getElementById("published").appendChild(list).value = "";
             querySnapshot.forEach((doc) => {
-                const list = document.createElement('ul');
-                const item = document.createElement('li');
-                list.appendChild(item);
+                //const createPost = () => {
+                    const item = document.createElement('li');
+                    list.appendChild(item);
+                    item.innerHTML = doc.data().text
             console.log(`${doc.id} => ${doc.data().text}`);
             })
         })
@@ -54,10 +53,10 @@ let Home = {
             if (post.value == '') {
                 alert(`The field cannot be empty`)
             } else {
-                Credvalidator.addPost(user.id, post.value)
+                Controller.addPost(user.uid, post.value)
                     .then((docRef) => {
                         console.log('Document written with ID: ', docRef.id);
-                        window.location.hash = '/';
+                        window.location.hash = 'home';
                     })
                     .catch(function (error) {
                         console.log(error.code);
