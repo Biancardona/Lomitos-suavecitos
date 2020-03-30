@@ -1,27 +1,32 @@
 let Navbar = {
     render: async () => {
         let view = /*html*/ `
-            
-             <h1 class="logo">LOMITOTECA <a href="/#/"</a>
-             </h1>
-             <nav class="navbar" role="navigation" aria-label="main navigation">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+            <span class="navbar-toggle" id="js-navbar-toggle"> 
+            <i class="fas fa-bars"></i>
+            </span>
+             <h1 class="logo" <a  href="/#/login"> LOMITOTECA </h1>
              <ul class="main-nav" id="js-menu">
-                  <li>
-                     <a class="navbar-item" <a href="/#/home"> Home </a></li>
-                     <li>
-                  <a class="navbar-item" <a  href="/#/about"> About </a></li>
+             <li>
+                  <a class="nav-links" <a  href="/#/about"> About </a></li>
                <div class="buttons">
-                <a class="navbar-item" href="/#/register"> 
-                  <strong>Sign up</strong>
-                    </a>
+               <li>
+                <a class="nav-links" href="/#/register"> 
+                  <strong>Sign up</strong></a>
+                  </li>
+                    </ul>
                  </div>
-                 </ul>
             </nav>
         `
         return view
     },
-    after_render: async () => {}
-
+    after_render: async () => {
+        const navBarToggle = document.getElementById("js-navbar-toggle");
+        const mainNav = document.getElementById("js-menu");
+        navBarToggle.addEventListener("click", () => {
+            mainNav.classList.toggle("active");
+        })
+    }
 }
 
 export default Navbar;

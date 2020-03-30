@@ -2,7 +2,6 @@ import Utils from '../../utils/utils.js';
 
 let Credvalidator = {
 
-    //Registrar usuario
     createUser: (email, password) => {
         if (Utils.validateEmail(email) === true) {
             return firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -13,18 +12,16 @@ let Credvalidator = {
             return firebase.auth().signInWithEmailAndPassword(email, password)
         }
     },
-    addPost: (postUser) => {
+    addPost: (uid, postUser) => {
         const db = firebase.firestore();
-        return db.collection('post').add({
-            descripcion: postUser,
+        return db.collection(uid).add({
+            text: postUser,
         })
     },
-    getPost: () => {
-        const docRef = db.collection('post');
-       return docRef.get({
-        })
+    getPost: (uid) => {
+        const db = firebase.firestore();
+       return db.collection(uid).get();
     }
-
 }
 
 export default Credvalidator;

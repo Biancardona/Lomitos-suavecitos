@@ -16,8 +16,7 @@ let Home = {
      </div>
          <section class="section">
 
-             <h1 id="userName"></h1> 
-             <h3 class="text-user"></h3>
+             <h1 class="text-user" id="userName"></h1> 
              <form id="form-addPost" method ="post" name="fileinfo">
       <input name="post" type="text" id="add_post" placeholder="¿What´s on your mind?"></br>
       <button type="submit" id="create_post_btn"><a href="#/">Create Post</button></br>
@@ -26,7 +25,7 @@ let Home = {
       <button> Galery </button>
       </div></br>
       <div id="published">
-    <h2> </h2>
+    <p> </p>
       </div>
       
    </form>
@@ -36,16 +35,26 @@ let Home = {
     },
     after_render: async () => {
         const user = firebase.auth().currentUser;
+        Credvalidator.getPost(user.uid)
+        .then((querySnapshot) => {
+            document.getElementById("published").value = "";
+            querySnapshot.forEach((doc) => {
+                const list = document.createElement('ul');
+                const item = document.createElement('li');
+                list.appendChild(item);
+            console.log(`${doc.id} => ${doc.data().text}`);
+            })
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });    
         document.getElementById("userName").innerHTML= 'Welcome ' + user.displayName;
         document.getElementById("create_post_btn").addEventListener("click", () => {
             let post = document.getElementById("add_post");
             if (post.value == '') {
                 alert(`The field cannot be empty`)
-                //  } else if (Utils.validateEmail === false) {
-                // window.location.hash = 'home';
-                // alert('Please enter an email');
             } else {
-                Credvalidator.addPost(post.value)
+                Credvalidator.addPost(user.id, post.value)
                     .then((docRef) => {
                         console.log('Document written with ID: ', docRef.id);
                         window.location.hash = '/';

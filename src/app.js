@@ -1,15 +1,10 @@
 "use strict";
 import Utils from './utils/utils.js';
-
 import Home from './views/pages/home.js';
 import Login from './views/pages/login.js';
-
 //import PostShow from './views/pages/postShow.js';
 import Register from './views/pages/register.js';
-
 import Navbar from './views/components/navbar.js';
-
-
 //import Bottombar from './views/components/Bottombar.js';
 
 // List of supported routes. Any url other than these routes will throw a 404 error
