@@ -27,7 +27,6 @@ let Home = {
    </form>
          </section>
      `
-
     },
     after_render: async () => {
         const user = firebase.auth().currentUser;
@@ -37,12 +36,24 @@ let Home = {
             document.getElementById("published").appendChild(list).value = "";
             querySnapshot.forEach((doc) => {
                     const item = document.createElement('li');
-                    const att = document.createAttribute("id");
+                    const att = document.createAttribute('id');
+                    const buttonTrash = document.createElement('i');
                     att.value = doc.id;
                     item.setAttributeNode(att);
+                    item.setAttribute("class", "post");
+                    buttonTrash.setAttribute('class','fa fa-trash');
                     list.appendChild(item);
-                    item.innerHTML = doc.data().text
+                    item.innerHTML = doc.data().text;
+                    item.appendChild(buttonTrash);
             console.log(`${doc.id} => ${doc.data().text}`);
+            const deletePosts = (e) => {
+                Controller.deletePost(user.uid, doc.id)
+                .then(() => {
+                    item.parentNode.removeChild(item)
+                })
+            }
+            buttonTrash.addEventListener('click',deletePosts, false)
+        
             })
         })
         .catch(function(error) {
