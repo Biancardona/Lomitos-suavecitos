@@ -11,8 +11,7 @@ let Navbar = {
                   <a class="nav-links" <a  href="/#/about"> About </a></li>
                <div class="buttons">
                <li>
-                <a class="nav-links" href="/#/register"> 
-                  <strong>Sign up</strong></a>
+                <a class="nav-links" href="/#/register">Sign up </a>
                   </li>
                     </ul>
                  </div>

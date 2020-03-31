@@ -4,6 +4,7 @@ let Home = {
         return /*html*/ `
      <section class="section">
      <div class="field">
+     <h1 class="text-user" id="userName"></h1> 
          <p class="control has-icons-left has-icons-right">
          <button class="buttons" type="submit" id="btnClosed"><a href="#/login">Sign Out</a></button></br>
          <span class="icon is-small is-left">
@@ -12,10 +13,8 @@ let Home = {
          </p>
      </div>
          <section class="section">
-
-             <h1 class="text-user" id="userName"></h1> 
              <form id="form-addPost" method ="post" name="fileinfo">
-      <input name="post" type="text" id="add_post" placeholder="¿What´s on your mind?"></br>
+      <textarea class= "form-control" name="post" type="text" id="add_post" placeholder="¿What´s on your mind?" rows="3" ></textarea></textarea></br>
       <button type="submit" id="create_post_btn"><a href="#/">Create Post</button></br>
       
       <div>
@@ -37,8 +36,10 @@ let Home = {
             const list = document.createElement('ul');
             document.getElementById("published").appendChild(list).value = "";
             querySnapshot.forEach((doc) => {
-                //const createPost = () => {
                     const item = document.createElement('li');
+                    const att = document.createAttribute("id");
+                    att.value = doc.id;
+                    item.setAttributeNode(att);
                     list.appendChild(item);
                     item.innerHTML = doc.data().text
             console.log(`${doc.id} => ${doc.data().text}`);

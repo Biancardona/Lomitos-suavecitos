@@ -21,15 +21,10 @@ let Controller = {
     getPost: (uid) => {
         const db = firebase.firestore();
        return db.collection(uid).get();
-  /*  },
-    addElement: ()=> {
-        const list = document.createElement('ul');
-        const item = document.createElement('li');
-       return list.appendChild(item);
-       
-
-    */
+   },
+    deletePost: (uid, docRefId) => {
+        const db = firebase.firestore();
+       return db.collection(uid).doc(docRefId).delete();
     }
 }
-
 export default Controller;
