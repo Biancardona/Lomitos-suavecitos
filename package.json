@@ -1,7 +1,7 @@
 {
-  "name": "social-network",
+  "name": "lomitoteca",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
+  "description": "Lomitos Suavecitos",
   "main": "src/index.html",
   "keywords": [
     "javascript",

@@ -4,7 +4,7 @@ let Login = {
 
         render: async () => {
                 return /*html*/ `
-            <section class="section">
+            <section class="section-one">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
                         <input class="input" id="email_input" type="email" placeholder="Enter your Email">
@@ -31,6 +31,7 @@ let Login = {
                         </button>
                     </p>
                 </div>
+    
             </section>
         `
             }

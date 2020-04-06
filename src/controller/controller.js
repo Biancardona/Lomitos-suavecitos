@@ -18,13 +18,24 @@ let Controller = {
             text: postUser,
         })
     },
-    getPost: (uid) => {
+    getPosts: (uid) => {
         const db = firebase.firestore();
-       return db.collection(uid).get();
-   },
+        return db.collection(uid).get();
+    },
     deletePost: (uid, docRefId) => {
         const db = firebase.firestore();
-       return db.collection(uid).doc(docRefId).delete();
-    }
+        return db.collection(uid).doc(docRefId).delete();
+    },
+    editPost: (uid, docRefId, postUser) => {
+        const db = firebase.firestore();
+        db.collection(uid).doc(docRefId);
+        return editPost.update({
+            text: postUser,
+        })
+    },
+    getPost: (uid, docRefId) => {
+        const db = firebase.firestore();
+        return db.collection(uid).doc(docRefId).get();
+    },
 }
 export default Controller;
