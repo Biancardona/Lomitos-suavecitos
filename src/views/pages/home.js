@@ -47,23 +47,27 @@ let Home = {
                     item.appendChild(buttonTrash);
                     console.log(`${doc.id} => ${doc.data().text}`);
                     //*** Editar Post ***
-                    // const editPost = (e) => {
-                    //     e.preventDefault();
-                    //     Controller.editPost(user.uid, doc.id)
-                    //     .then(() => {
-                    //         const textArea = document.getElementById("add_post");
-                    //         textArea.querySelector('.fa fa-edit').value = doc.data().text;
-                    //         const saveChangesButton = document.getElementById('create_post_btn');
-                    //         saveChangesButton.innerHTML = 'Save'
-                    //         console.log("Document successfully updated!");
-                    //     })
-                    //         .catch(function (error) {
-                    //             //The document probably doesnt exist
-                    //             console.error("Error updating document: ", error);
-                    //         })
-                    // saveChangesButton.addEventListener('click',editPost, false);
-                    //     editPost(textArea);
-                    // }
+                    const textArea = document.getElementById("add_post");
+                        textArea.querySelector('.fa fa-edit').value = doc.data().text;
+                    const saveChangesButton = document.getElementById('create_post_btn');
+                    saveChangesButton.innerHTML = 'Save'
+                    const editPostHandler = (e) => {
+                        console.log ('aaaaaaaa')
+                        
+                        
+                        console.log("Document successfully updated!");
+                        // Controller.editPost(user.uid, doc.id)
+                        // .then(() => {
+                        //     
+                            
+                        // })
+                        //     .catch(function (error) {
+                        //         //The document probably doesnt exist
+                        //         console.error("Error updating document: ", error);
+                        //     })
+                    }
+                    console.log('bbbbbbbb')
+                    saveChangesButton.addEventListener('click',editPostHandler, false);
 
                     // *** Eliminar Post ***
                     const deletePosts = (e) => {
