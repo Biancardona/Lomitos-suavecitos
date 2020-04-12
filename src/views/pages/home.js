@@ -6,7 +6,7 @@ let Home = {
      <div class="field">
      <h1 class="text-user" id="userName"></h1> 
          <p class="control has-icons-left">
-         <button class="button is-primary" type="submit" id="btnClosed"><a href="#/login">Sign Out</a></button></br>
+         <button class="button is-primary" type="submit" id="btn-SignOut"><a href="#/login">Sign Out</a></button></br>
          <span class="icon is-small is-left">
          </span>
          </p>
@@ -24,12 +24,16 @@ let Home = {
      `
     },
     after_render: async () => {
-        const user = firebase.auth().currentUser;
-        document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
-        document.getElementById("create_post_btn").addEventListener("click", () => {
-            Home.createPost(user.uid);
-        });
-        Home.showPosts(user.uid);
+        document.getElementById('btn-SignOut').addEventListener('click', Controller.singOut);
+        Controller.getUser((user) => {
+            if(user) {
+            document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
+            document.getElementById("create_post_btn").addEventListener("click", () => {
+                Home.createPost(user.uid);
+            });
+            Home.showPosts(user.uid);
+        }
+        })
     },
     createPost: (userUid) => {
         event.preventDefault();
@@ -108,12 +112,14 @@ let Home = {
                 save.setAttribute('class', 'fa fa-save');
                 const parentId = create_post_btn.parentNode;
                 parentId.insertBefore(save, create_post_btn);
+                create_post_btn.disabled = true;
                 save.addEventListener('click', (e) => {
                     e.preventDefault();
                     const editedPost = document.getElementById("add_post");
                     Controller.editPost(userUid, docId, editedPost.value)
                         .then(() => {
                             save.parentNode.removeChild(save);
+                            create_post_btn.disabled = false;
                             Home.showPosts(userUid);
 
                         })

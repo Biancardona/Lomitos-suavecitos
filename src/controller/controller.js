@@ -1,6 +1,11 @@
 import Utils from '../../utils/utils.js';
 
 let Controller = {
+    getUser: (cb) => {
+        firebase.auth().onAuthStateChanged((user) => {
+            cb(user);
+        });
+    },
 
     createUser: (email, password) => {
         if (Utils.validateEmail(email) === true) {
@@ -11,6 +16,9 @@ let Controller = {
         if (Utils.validateEmail(email) === true) {
             return firebase.auth().signInWithEmailAndPassword(email, password)
         }
+    },
+    singOut: () => {
+        firebase.auth().signOut()
     },
     addPost: (uid, postUser) => {
         const db = firebase.firestore();
