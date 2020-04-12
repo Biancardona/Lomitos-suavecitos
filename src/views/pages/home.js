@@ -25,9 +25,35 @@ let Home = {
     },
     after_render: async () => {
         const user = firebase.auth().currentUser;
-        //*** Obtener Post de Firestore ***
-        Controller.getPosts(user.uid)
+        document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
+        document.getElementById("create_post_btn").addEventListener("click", () => {
+            Home.createPost(user.uid);
+        });
+        Home.showPosts(user.uid);
+    },
+    createPost: (userUid) => {
+        event.preventDefault();
+        const post = document.getElementById("add_post");
+        if (post.value == '') {
+            alert(`The field cannot be empty`)
+        } else {
+            Controller.addPost(userUid, post.value)
+                .then((docRef) => {
+                    console.log('Document written with ID: ', docRef.id);
+                    Home.showPosts(userUid);
+                })
+                .catch(function (error) {
+                    console.log(error.code);
+                    console.log(error.message);
+                    Home.showPosts(userUid);
+                })
+        }
+    },
+    showPosts: (userUid) => {
+        document.getElementById("add_post").value = "";
+        Controller.getPosts(userUid)
             .then((querySnapshot) => {
+                document.getElementById("published").innerHTML = "";
                 const list = document.createElement('ul');
                 document.getElementById("published").appendChild(list).value = "";
                 querySnapshot.forEach((doc) => {
@@ -46,66 +72,59 @@ let Home = {
                     item.appendChild(editButton);
                     item.appendChild(buttonTrash);
                     console.log(`${doc.id} => ${doc.data().text}`);
-                    //*** Editar Post ***
-                    const textArea = document.getElementById("add_post");
-                        textArea.querySelector('.fa fa-edit').value = doc.data().text;
-                    const saveChangesButton = document.getElementById('create_post_btn');
-                    saveChangesButton.innerHTML = 'Save'
-                    const editPostHandler = (e) => {
-                        console.log ('aaaaaaaa')
-                        
-                        
-                        console.log("Document successfully updated!");
-                        // Controller.editPost(user.uid, doc.id)
-                        // .then(() => {
-                        //     
-                            
-                        // })
-                        //     .catch(function (error) {
-                        //         //The document probably doesnt exist
-                        //         console.error("Error updating document: ", error);
-                        //     })
-                    }
-                    console.log('bbbbbbbb')
-                    saveChangesButton.addEventListener('click',editPostHandler, false);
+                    buttonTrash.addEventListener('click', (e) => {
+                        Home.deletePosts(userUid, e);
+                    })
+                    editButton.addEventListener('click', (e) => {
+                        Home.editPost(userUid, e);
 
-                    // *** Eliminar Post ***
-                    const deletePosts = (e) => {
-                        e.preventDefault();
-                        Controller.deletePost(user.uid, doc.id)
-                            .then(() => {
-                                item.parentNode.removeChild(item)
-                            })
-                            .catch(function (error) {
-                                console.error("Error removing document: ", error);
-                            });
-                    }
-                    buttonTrash.addEventListener('click', deletePosts, false)
+                    });
                 })
             })
             .catch(function (error) {
                 console.log("Error getting documents: ", error);
             });
-        document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
-        document.getElementById("create_post_btn").addEventListener("click", () => {
-            let post = document.getElementById("add_post");
-            if (post.value == '') {
-                alert(`The field cannot be empty`)
-            } else {
-                //*** Añadir post a firestore ***
-                Controller.addPost(user.uid, post.value)
-                    .then((docRef) => {
-                        console.log('Document written with ID: ', docRef.id);
-                        window.location.hash = 'home';
-                    })
-                    .catch(function (error) {
-                        console.log(error.code);
-                        console.log(error.message);
-                        window.location.hash = '/';
-                    })
-            }
-        })
+    },
+    deletePosts: (userUid, e) => {
+        e.preventDefault();
+        const docId = event.currentTarget.parentNode.id;
+        Controller.deletePost(userUid, docId)
+            .then(() => {
+                Home.showPosts(userUid);
+            })
+            .catch(function (error) {
+                console.error("Error removing document: ", error);
+            });
+    },
+    editPost: (userUid, e) => {
+        e.preventDefault();
+        const docId = event.currentTarget.parentNode.id;
+        Controller.getPost(userUid, docId)
+            .then((post) => {
+                const textArea = document.getElementById("add_post");
+                textArea.value = post.data().text;
+                const save = document.createElement('button');
+                save.innerHTML = "Save changes";
+                save.setAttribute('class', 'fa fa-save');
+                const parentId = create_post_btn.parentNode;
+                parentId.insertBefore(save, create_post_btn);
+                save.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const editedPost = document.getElementById("add_post");
+                    Controller.editPost(userUid, docId, editedPost.value)
+                        .then(() => {
+                            save.parentNode.removeChild(save);
+                            Home.showPosts(userUid);
+
+                        })
+                })
+            })
+            .catch(function (error) {
+                console.error("Error updating document: ", error);
+
+            })
     }
+
 }
 
 export default Home;
