@@ -6,7 +6,6 @@ let Home = {
      <div class="field">
      <h1 class="text-user" id="userName"></h1> 
          <p class="control has-icons-left">
-         <button class="button is-primary" type="submit" id="btn-SignOut"><a href="#/login">Sign Out</a></button></br>
          <span class="icon is-small is-left">
          </span>
          </p>
@@ -24,7 +23,6 @@ let Home = {
      `
     },
     after_render: async () => {
-        document.getElementById('btn-SignOut').addEventListener('click', Controller.singOut);
         Controller.getUser((user) => {
             if(user) {
             document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
@@ -32,6 +30,8 @@ let Home = {
                 Home.createPost(user.uid);
             });
             Home.showPosts(user.uid);
+        }else{
+            window.location.hash = '/login';
         }
         })
     },
@@ -72,7 +72,7 @@ let Home = {
                     buttonTrash.setAttribute('class', 'fa fa-trash');
                     editButton.setAttribute('class', 'fa fa-edit');
                     list.appendChild(item);
-                    item.innerHTML = doc.data().text;
+                    item.innerHTML = doc.data().text + '  ' + '  ';
                     item.appendChild(editButton);
                     item.appendChild(buttonTrash);
                     console.log(`${doc.id} => ${doc.data().text}`);
@@ -105,23 +105,21 @@ let Home = {
         const docId = event.currentTarget.parentNode.id;
         Controller.getPost(userUid, docId)
             .then((post) => {
+                document.getElementById("create_post_btn").style.visibility = "hidden";
                 const textArea = document.getElementById("add_post");
                 textArea.value = post.data().text;
                 const save = document.createElement('button');
                 save.innerHTML = "Save changes";
-                save.setAttribute('class', 'fa fa-save');
                 const parentId = create_post_btn.parentNode;
                 parentId.insertBefore(save, create_post_btn);
-                create_post_btn.disabled = true;
                 save.addEventListener('click', (e) => {
                     e.preventDefault();
                     const editedPost = document.getElementById("add_post");
                     Controller.editPost(userUid, docId, editedPost.value)
                         .then(() => {
                             save.parentNode.removeChild(save);
-                            create_post_btn.disabled = false;
                             Home.showPosts(userUid);
-
+                            document.getElementById('create_post_btn').style.visibility = "visible";
                         })
                 })
             })

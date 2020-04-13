@@ -2,7 +2,6 @@
 import Utils from './utils/utils.js';
 import Home from './views/pages/home.js';
 import Login from './views/pages/login.js';
-//import PostShow from './views/pages/postShow.js';
 import Register from './views/pages/register.js';
 import Navbar from './views/components/navbar.js';
 import setUp from './firebase/authState.js';
@@ -10,7 +9,6 @@ import setUp from './firebase/authState.js';
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
   '/': Home,
-  //, '/p/:id'      : PostShow
   '/register': Register,
   '/login': Login
 
@@ -39,6 +37,7 @@ const router = async () => {
   await Navbar.after_render();
   // footer.innerHTML = await Bottombar.render();
   //await Bottombar.after_render();
+  
   // Get the parsed URl from the addressbar
   let request = Utils.parseRequestURL()
   // Parse the URL and if it has an id part, change it with the string ":id"
