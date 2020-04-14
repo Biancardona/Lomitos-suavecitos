@@ -35,9 +35,9 @@ EL usuario en su perfil puede crear, editar y eliminar sus propios posts.
 
    * Imagenes finales del proyecto.
 
-![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Login.png)
+![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Login.png 'Login de la App')
 
-![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%201.png)  
-![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%202.png)
+![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%201.png 'Iniciar sesión')  
+![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%202.png 'Iniciar sesión desplegando la navbar')
 
-[Da click aqui para abrir Lomitoteca 
+Da click aqui para abrir Lomitoteca 
