@@ -37,4 +37,4 @@ EL usuario en su perfil puede crear, editar y eliminar sus propios posts.
 
 ![alt text](https://github.com/Biancardona/GDL004-data-lovers/blob/developtere/src/img/proto1.png)
 ***
-[Da click aqui para abrir Lomitoteca( (https://biancardona.github.io/GDL004-data-lovers/src/index.html)   
+[Da click aqui para abrir Lomitoteca 
