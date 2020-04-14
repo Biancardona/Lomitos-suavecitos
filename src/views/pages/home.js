@@ -24,15 +24,15 @@ let Home = {
     },
     after_render: async () => {
         Controller.getUser((user) => {
-            if(user) {
-            document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
-            document.getElementById("create_post_btn").addEventListener("click", () => {
-                Home.createPost(user.uid);
-            });
-            Home.showPosts(user.uid);
-        }else{
-            window.location.hash = '/login';
-        }
+            if (user) {
+                document.getElementById("userName").innerHTML = 'Welcome ' + user.displayName;
+                document.getElementById("create_post_btn").addEventListener("click", () => {
+                    Home.createPost(user.uid);
+                });
+                Home.showPosts(user.uid);
+            } else {
+                window.location.hash = '/login';
+            }
         })
     },
     createPost: (userUid) => {
@@ -72,7 +72,7 @@ let Home = {
                     buttonTrash.setAttribute('class', 'fa fa-trash');
                     editButton.setAttribute('class', 'fa fa-edit');
                     list.appendChild(item);
-                    item.innerHTML = doc.data().text + '  ' + '  ';
+                    item.innerHTML = doc.data().text + '  ';
                     item.appendChild(editButton);
                     item.appendChild(buttonTrash);
                     console.log(`${doc.id} => ${doc.data().text}`);
