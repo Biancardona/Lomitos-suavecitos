@@ -1,4 +1,4 @@
-import Utils from '../../utils/utils.js';
+import Utils from '../utils/utils.js';
 
 let Controller = {
     getUser: (cb) => {
