@@ -11,11 +11,11 @@ let Navbar = {
              <ul class="main-nav" id="js-menu">
              <li>
                 <div class="buttons">
-                  <a id= "nav-about" class="nav-links" <a  href="/#/about"> About </a></li>
+                  <a id= "nav-about" class="nav-links" <a  href="#/about"> About </a></li>
                <li>
-                <a id="nav-sign-up" class="nav-links" href="/#/register">Sign up </a></li>
+                <a id="nav-sign-up" class="nav-links" href="#/register">Sign up </a></li>
                 <li>
-                <a id="nav-home" class="nav-links" href="/#/"> Home </a></li>
+                <a id="nav-home" class="nav-links" href="#/"> Home </a></li>
                     </ul>
                  </div>
             </nav>

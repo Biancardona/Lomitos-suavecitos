@@ -41,10 +41,10 @@ EL usuario en su Perfil puede crear, editar y eliminar sus propios posts. Y en H
 
 ![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%201.png 'Iniciar sesión') 
 
-'Pantalla de inicio' 
+'Home' 
 
 ![alt text](https://github.com/Biancardona/lomitos-suavecitos/blob/master/src/Imagenes/Home%202.png 'Iniciar sesión desplegando la navbar')
 
 'Pantalla de inicio desplegando la navbar'
 
-Da click aqui para abrir Lomitoteca (https://biancardona.github.io/lomitos-suavecitos/index.html)
+Da click aqui para abrir Lomitoteca (https://biancardona.github.io/lomitos-suavecitos/)
