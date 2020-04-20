@@ -1,10 +1,11 @@
 import initFirebase from './initFirebase.js';
+import Controller from '../controller/controller.js';
 
 function setUp() {
 
     initFirebase();
     firebase.firestore();
-    firebase.auth().onAuthStateChanged(function (user) {
+    Controller.getUser(function(user){
 
         if (user) {
             // User is signed in.

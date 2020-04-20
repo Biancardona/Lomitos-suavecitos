@@ -1,7 +1,9 @@
 "use strict";
 import Utils from './utils/utils.js';
+import About from './views/pages/about.js';
 import Home from './views/pages/home.js';
 import Login from './views/pages/login.js';
+import Profile from './views/pages/profile.js';
 import Register from './views/pages/register.js';
 import Navbar from './views/components/navbar.js';
 import setUp from './firebase/authState.js';
@@ -10,7 +12,9 @@ import setUp from './firebase/authState.js';
 const routes = {
   '/': Home,
   '/register': Register,
-  '/login': Login
+  '/login': Login,
+  '/about': About,
+  '/profile': Profile
 
 };
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.

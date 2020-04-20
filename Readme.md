@@ -1,7 +1,7 @@
 # LOMITOTECA
 
-Lomitoteca se basa en la red social "Lomitos suaves", cuya tematica son las mascotas (esecificamente perros). En Lomitoteca los usuarios podrán compartir cualquier post relacionado con sus mascotas (perros) pero siendo el objetivo principalmente de recreación y entretenimiento. 
-EL usuario en su perfil puede crear, editar y eliminar sus propios posts. 
+Lomitoteca se basa en la red social "Lomitos suaves", cuya tematica son las mascotas (esecificamente perros). En Lomitoteca los usuarios podrán compartir cualquier post relacionado a sus mascotas o algun servicio que brinden tambien relacionado a sus perros, como por ejemplo, ofrecer servicios de paseo, veterinaria, de adopción, de cruza, etc., o también pueden subir algun post de entretenimiento o recreación (por ejemplo: hoy, 04/04/2020 se le cayó el primer colmillo a mi perrito). 
+EL usuario en su Perfil puede crear, editar y eliminar sus propios posts. Y en Home, el usuario tiene a la vista además de sus propios post, todos los de los demás usuarios que se han registrado en la red social. 
 
 
 ## Caracteristicas técnicas
